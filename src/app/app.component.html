@@ -1,0 +1,23 @@
+<!-- Top Navbar -->
+<div class="top-nav">
+  <button class="menu-btn" (click)="toggleSideNav()">☰</button>
+  <span class="title">Angular Entreplan App</span>
+</div>
+
+<!-- Layout -->
+<div class="layout">
+  <!-- Side Navbar -->
+  <div class="side-nav" [class.closed]="isSideNavClosed">
+    <ul>
+      <li routerLink="/dashboard" routerLinkActive="active">Dashboard</li>
+      <li routerLink="/users" routerLinkActive="active">Users</li>
+      <li routerLink="/reports" routerLinkActive="active">Reports</li>
+      <li routerLink="/settings" routerLinkActive="active">Settings</li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
+</div>
