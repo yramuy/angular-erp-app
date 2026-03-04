@@ -8,22 +8,23 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'my-angular-app';
   // hello = "Welcome to Angular JS";
-  skills: string[]= [];
-  isSideNavClosed = false;
+  // skills: string[]= [];
 
-  toggleSideNav() {
-    this.isSideNavClosed = !this.isSideNavClosed;
-  }
+  // isCollapsed = false;
 
-  ngOnInit() {
-    this.skills = this.getSkills();
-  }
+  // toggleSidebar() {
+  //   this.isCollapsed = !this.isCollapsed;
+  // }
 
-  getName() {
-    return "Ramu Y";
-  }
+  // ngOnInit() {
+  //   this.skills = this.getSkills();
+  // }
 
-  getSkills() {
-     return ['PHP 1', 'Flutter 2', 'React 3', 'Angular 4'];
-  }
+  // getName() {
+  //   return "Ramu Y";
+  // }
+
+  // getSkills() {
+  //    return ['PHP 1', 'Flutter 2', 'React 3', 'Angular 4'];
+  // }
 }

@@ -7,6 +7,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UsersComponent } from './components/users/users.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { EmployeesComponent } from './components/employees/employees.component';
+import { LoginComponent } from './components/login/login.component';
+import { FormsModule } from '@angular/forms';
+import { LayoutComponent } from './components/layout/layout.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,11 +19,16 @@ import { SettingsComponent } from './components/settings/settings.component';
     DashboardComponent,
     UsersComponent,
     ReportsComponent,
-    SettingsComponent
+    SettingsComponent,
+    EmployeesComponent,
+    LoginComponent,
+    LayoutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

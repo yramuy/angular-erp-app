@@ -1,0 +1,35 @@
+.bi {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  cursor: pointer;
+  color: #6c757d;
+}
+
+.bi:hover {
+  color: #198754; /* bootstrap success color */
+}
+
+.position-relative .bi {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+.position-relative .bi:hover {
+  color: #198754; /* Bootstrap success */
+}
+
+.login-card {
+  width: 420px;        /* increase width */
+  min-height: 420px;   /* increase height */
+  padding: 10px;
+}
+
+.login-card .card-body {
+  padding: 30px;
+}
