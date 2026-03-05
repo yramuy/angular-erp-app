@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+table td {
+    background-color: rgb(1 46 6);
+}
+
+.header-div {
+    padding: 8px;
+    width: 100%;
+    border: 1px solid grey;
+    background-color: rgb(196, 188, 188);
+    color: black;
+    font-size: 18px;
+}
