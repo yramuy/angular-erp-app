@@ -1,6 +1,6 @@
 
 <!-- ================= TOP NAVBAR ================= -->
-<nav class="navbar navbar-dark px-3">
+<nav class="navbar navbar-dark fixed-top px-3">
   <!-- Left section -->
   <div class="d-flex align-items-center">
     <button class="btn btn-outline-light me-3" (click)="toggleSidebar()">
@@ -66,7 +66,10 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/employees" routerLinkActive="active">
+          <a class="nav-link" 
+          routerLink="/employees" 
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: false }">
             <i class="bi bi-people"></i>
             <span class="link-text">Employees</span>
           </a>
@@ -97,7 +100,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="content px-4 pt-4" [class.collapsed]="isCollapsed">
+    <main class="content px-4 pt-5 mt-4" [class.collapsed]="isCollapsed">
       <router-outlet></router-outlet>
     </main>
 

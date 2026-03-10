@@ -9,10 +9,11 @@ import { LoginComponent } from './components/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
+import { AddEmployeeComponent } from './components/employees/add-employee/add-employee.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full'},
-  { path: 'login', component: LoginComponent, canActivate: [loginGuard]},
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent, canActivate: [loginGuard] },
 
   // Main layout (AFTER login)
   {
@@ -21,10 +22,18 @@ const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: DashboardComponent },
-      { path: 'employees', component: EmployeesComponent },
+
+      {
+        path: 'employees',
+        children: [
+          { path: '', component: EmployeesComponent },
+          { path: 'add', component: AddEmployeeComponent }
+        ]
+      },
+
       { path: 'users', component: UsersComponent },
       { path: 'reports', component: ReportsComponent },
-      { path: 'settings', component: SettingsComponent }
+      { path: 'settings', component: SettingsComponent },
     ]
   },
 

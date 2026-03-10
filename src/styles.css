@@ -11,3 +11,7 @@ table td {
     color: black;
     font-size: 18px;
 }
+
+.form-control {
+    border-color: lightslategrey;
+}

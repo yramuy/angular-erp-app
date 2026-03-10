@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AddEmployeeComponent } from './components/employees/add-employee/add-employee.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     SettingsComponent,
     EmployeesComponent,
     LoginComponent,
-    LayoutComponent
+    LayoutComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Employee } from 'src/app/models/employee';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
@@ -12,9 +13,9 @@ declare var $: any;
 export class EmployeesComponent implements OnInit, AfterViewInit {
 
   employees: Employee[] = [];
-  router: any;
 
-  constructor(private apiService: ApiService, private authService: AuthService) { }
+
+  constructor(private apiService: ApiService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.loadEmployees();
@@ -61,5 +62,9 @@ export class EmployeesComponent implements OnInit, AfterViewInit {
           console.error('Failed to load employees', err);
         }
       });
+  }
+
+  handleAdd() {
+    this.router.navigate(['/employees/add']);
   }
 }
