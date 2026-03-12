@@ -78,3 +78,7 @@ position: fixed;
 .cursor-pointer {
   cursor: pointer;
 }
+
+.link-text{
+  white-space: normal;
+}

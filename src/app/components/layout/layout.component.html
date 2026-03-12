@@ -1,108 +1,254 @@
-
-<!-- ================= TOP NAVBAR ================= -->
+<!-- TOP NAVBAR -->
 <nav class="navbar navbar-dark fixed-top px-3">
-  <!-- Left section -->
-  <div class="d-flex align-items-center">
-    <button class="btn btn-outline-light me-3" (click)="toggleSidebar()">
-      <i class="bi bi-list"></i>
-    </button>
-    <span class="navbar-brand mb-0 h1 titleText">Angular ERP App</span>
+  <div class="d-flex justify-content-start">
+    <img src="assets/images/prospecta_newlogo.png" width="100" class="me-2">
   </div>
 
-    <!-- Right section (Tooltip-style dropdown) -->
+  <!-- Right section (Tooltip-style dropdown) -->
   <div class="dropdown ms-auto">
-    <div
-      class="d-flex align-items-center cursor-pointer"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      <span class="fs-5 text-white me-2">{{ user?.roleName }}</span>
-      <i class="bi bi-person fs-4 text-white"></i>
-    </div>
-
+    <div class="d-flex align-items-center cursor-pointer" data-bs-toggle="dropdown" aria-expanded="false"> <span
+        class="fs-5 text-white me-2">{{ user?.roleName }}</span> <i class="bi bi-person fs-4 text-white"></i> <i class="bi bi-caret-down-fill text-white mt-1"></i></div>
     <!-- Dropdown menu -->
     <ul class="dropdown-menu dropdown-menu-end shadow">
-      <li class="dropdown-header text-center">
-        {{ user?.fullName }}
+      <li class="dropdown-header text-center"> {{ user?.fullName }} </li>
+      <li> <a class="dropdown-item" routerLink="/profile"> <i class="bi bi-person me-2"></i> Profile </a> </li>
+      <li> <a class="dropdown-item" routerLink="/change-password"> <i class="bi bi-key me-2"></i> Change Password </a>
       </li>
-
       <li>
-        <a class="dropdown-item" routerLink="/profile">
-          <i class="bi bi-person me-2"></i> Profile
-        </a>
+        <hr class="dropdown-divider">
       </li>
-
-      <li>
-        <a class="dropdown-item" routerLink="/change-password">
-          <i class="bi bi-key me-2"></i> Change Password
-        </a>
-      </li>
-
-      <li><hr class="dropdown-divider"></li>
-
-      <li>
-        <a class="dropdown-item text-danger cursor-pointer" (click)="logout()">
-          <i class="bi bi-box-arrow-right me-2"></i> Logout
-        </a>
-      </li>
+      <li> <a class="dropdown-item text-danger cursor-pointer" (click)="logout()"> <i
+            class="bi bi-box-arrow-right me-2"></i> Logout </a> </li>
     </ul>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <img src="assets/images/ic_launcher.png" width="35" class="ms-2 rounded-circle">
   </div>
 </nav>
 
 
-<!-- ================= MAIN LAYOUT ================= -->
-<!-- <div class="container-fluid">
-  <div class="row"> -->
+<!-- SIDEBAR -->
+<nav class="sidebar">
 
-    <!-- Sidebar -->
-    <nav class="sidebar" [class.collapsed]="isCollapsed">
-      <ul class="nav flex-column pt-3">
+  <ul class="nav flex-column pt-3">
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
-            <i class="bi bi-speedometer2"></i>
-            <span class="link-text">Dashboard</span>
+    <!-- Dashboard -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+        <i class="bi bi-speedometer2"></i>
+        <span class="link-text">Dashboard</span>
+      </a>
+    </li>
+
+    <!-- Employees -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/employees" routerLinkActive="active">
+        <i class="bi bi-people"></i>
+        <span class="link-text">Employees</span>
+      </a>
+    </li>
+
+    <!-- USERS -->
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/users" routerLinkActive="active">
+        <i class="bi bi-person"></i> <span class="link-text">Users</span>
+      </a>
+    </li>
+
+    <!-- MY INFO -->
+    <li class="nav-item">
+
+      <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
+        (click)="toggleMenu('myInfo')">
+
+        <span class="d-flex align-items-center">
+          <i class="bi bi-person-circle me-2"></i>
+          <span class="link-text">My Info</span>
+        </span>
+
+        <i class="bi" [ngClass]="menus.myInfo ? 'bi-chevron-down' : 'bi-chevron-right'">
+        </i>
+
+      </a>
+
+      <ul *ngIf="menus.myInfo" class="list-unstyled ps-4">
+
+        <li>
+          <a class="nav-link" routerLink="/personal-details" routerLinkActive="active">
+            <i class="bi bi-person-vcard"></i> Personal Details
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" 
-          routerLink="/employees" 
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: false }">
-            <i class="bi bi-people"></i>
-            <span class="link-text">Employees</span>
+        <li>
+          <a class="nav-link" routerLink="/contact-details" routerLinkActive="active">
+            <i class="bi bi-telephone"></i> Contact Details
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/users" routerLinkActive="active">
-            <i class="bi bi-person"></i>
-            <span class="link-text">Users</span>
+        <li>
+          <a class="nav-link" routerLink="/job" routerLinkActive="active">
+            <i class="bi bi-briefcase"></i> Job
           </a>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/reports" routerLinkActive="active">
-            <i class="bi bi-file-earmark-text"></i>
-            <span class="link-text">Reports</span>
-          </a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/settings" routerLinkActive="active">
-            <i class="bi bi-gear"></i>
-            <span class="link-text">Settings</span>
+        <li>
+          <a class="nav-link" routerLink="/report-to" routerLinkActive="active">
+            <i class="bi bi-diagram-3"></i> Report-To
           </a>
         </li>
 
       </ul>
-    </nav>
 
-    <!-- Main Content -->
-    <main class="content px-4 pt-5 mt-4" [class.collapsed]="isCollapsed">
-      <router-outlet></router-outlet>
-    </main>
+    </li>
 
-  <!-- </div>
-</div> -->
+    <!-- CONFIGURATION -->
+    <li class="nav-item">
+
+      <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
+        (click)="toggleMenu('config')">
+
+        <span class="d-flex align-items-center">
+          <i class="bi bi-sliders me-2"></i>
+          <span class="link-text">Configuration</span>
+        </span>
+
+        <i class="bi" [ngClass]="menus.config ? 'bi-chevron-down' : 'bi-chevron-right'">
+        </i>
+
+      </a>
+
+      <ul *ngIf="menus.config" class="list-unstyled ps-4">
+
+        <li>
+          <a class="nav-link" routerLink="/dynamic-form-fields" routerLinkActive="active">
+            <i class="bi bi-ui-checks"></i> <span class="link-text">Dynamic Form Fields</span>
+          </a>
+        </li>
+
+        <li>
+          <a class="nav-link" routerLink="/screen" routerLinkActive="active">
+            <i class="bi bi-window"></i> Screen
+          </a>
+        </li>
+
+        <li>
+          <a class="nav-link" routerLink="/user-role-screen" routerLinkActive="active">
+            <i class="bi bi-person-gear"></i> UserRole Screen
+          </a>
+        </li>
+
+        <li>
+          <a class="nav-link" routerLink="/menu-item" routerLinkActive="active">
+            <i class="bi bi-list-ul"></i> Menu Item
+          </a>
+        </li>
+
+      </ul>
+
+    </li>
+
+    <!-- ATTENDANCE REPORTS -->
+    <li class="nav-item">
+
+      <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
+        (click)="toggleMenu('attendance')">
+
+        <span class="d-flex align-items-center">
+          <i class="bi bi-calendar-day me-2"></i>
+          <span class="link-text">Attendance Reports</span>
+        </span>
+
+        <i class="bi" [ngClass]="menus.attendance ? 'bi-chevron-down' : 'bi-chevron-right'">
+        </i>
+
+      </a>
+
+      <ul *ngIf="menus.attendance" class="list-unstyled ps-4">
+
+        <!-- DAILY -->
+        <li>
+
+          <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
+            (click)="toggleMenu('daily')">
+
+            <span>
+              <i class="bi bi-calendar-day me-2"></i> Daily
+            </span>
+
+            <i class="bi" [ngClass]="menus.daily ? 'bi-chevron-down' : 'bi-chevron-right'">
+            </i>
+
+          </a>
+
+          <ul *ngIf="menus.daily" class="list-unstyled ps-4">
+
+            <li>
+              <a class="nav-link" routerLinkActive="active">
+                <i class="bi bi-check-circle"></i> Attendance
+              </a>
+            </li>
+
+            <li>
+              <a class="nav-link" routerLinkActive="active">
+                <i class="bi bi-bar-chart"></i> Summary
+              </a>
+            </li>
+
+            <li>
+              <a class="nav-link" routerLinkActive="active">
+                <i class="bi bi-person-x"></i> Absentees
+              </a>
+            </li>
+
+          </ul>
+
+        </li>
+
+        <!-- MONTHLY -->
+
+        <li>
+
+          <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
+            (click)="toggleMenu('monthly')">
+
+            <span>
+              <i class="bi bi-calendar-day me-2"></i> Monthly
+            </span>
+
+            <i class="bi" [ngClass]="menus.monthly ? 'bi-chevron-down' : 'bi-chevron-right'">
+            </i>
+
+          </a>
+
+          <ul *ngIf="menus.monthly" class="list-unstyled ps-4">
+
+            <li>
+              <a class="nav-link" routerLinkActive="active">
+                <i class="bi bi-check-circle"></i> <span class="link-text">Attendance</span>
+              </a>
+            </li>
+
+            <li>
+              <a class="nav-link" routerLinkActive="active">
+                <i class="bi bi-bar-chart"></i> <span class="link-text">Summary</span>
+              </a>
+            </li>
+
+          </ul>
+
+        </li>
+
+      </ul>
+
+    </li>
+
+  </ul>
+
+</nav>
+
+
+<!-- MAIN CONTENT -->
+<main class="content px-4 pt-5 mt-4" [class.collapsed]="isCollapsed">
+  <router-outlet></router-outlet>
+</main>

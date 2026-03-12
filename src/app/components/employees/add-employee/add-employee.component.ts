@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -11,8 +13,10 @@ export class AddEmployeeComponent {
 
   formFields: any[] = [];
   formData: any = {};
+  message: string = "";
+  isMessage: boolean = false;
 
-  constructor(private apiService: ApiService, private authService: AuthService) { }
+  constructor(private apiService: ApiService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     this.loadDynamicFormFields();
@@ -35,10 +39,10 @@ export class AddEmployeeComponent {
 
       error: (err: any) => {
         if (err.status === 401) {
-          alert('Failed to load Dynamic Form');
+          this.showMessage("Failed to load Dynamic Form");
           this.authService.setLoginStatus(false);
         } else {
-          alert('Something went wrong. Please try again');
+          this.showMessage("Something went wrong. Please try again");
         }
       }
 
@@ -54,8 +58,52 @@ export class AddEmployeeComponent {
     });
   }
 
-  saveEmployee() {
+  saveEmployee(form: NgForm) {
+
+    if (form.invalid) {
+
+      // mark all controls as touched
+      Object.values(form.controls).forEach(control => {
+        control.markAsTouched();
+      });
+      return;
+    }
+
+    this.apiService.request("POST", "/saveEmployee", this.formData).subscribe({
+      next: (res: any) => {
+        this.showMessage(res?.message || "Employee saved successfully");
+        this.router.navigate(["/employees"], {
+          state: { message: res?.message || "Employee saved successfully"}
+        });
+      },
+      error: (err: any) => {
+        if (err.status === 401) {
+          this.showMessage("Token expired");
+          this.authService.setLoginStatus(false);
+        } else if (err.status === 400) {
+          this.showMessage("Invalid request data");
+        } else if (err.status === 500) {
+          this.showMessage("Server error. Please try again later");
+        } else {
+          this.showMessage("Something went wrong. Please try again later");
+        }
+      },
+
+    });
 
     console.log('Save Body', this.formData);
+  }
+
+  showMessage(msg: string) {
+    this.message = msg;
+    this.isMessage = true;
+
+    setTimeout(() => {
+      this.isMessage = false;
+    }, 3000);
+  }
+
+  handleBackBtn() {
+    this.router.navigate(['/employees']);
   }
 }

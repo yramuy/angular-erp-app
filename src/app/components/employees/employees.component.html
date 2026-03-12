@@ -3,6 +3,16 @@
     <h5>Employees</h5>
   </div>
   <div class="card-body">
+
+    <div *ngIf="isMessage === true" class="alert alert-success alert-dismissible fade show">
+
+      {{message}}
+
+      <button type="button" class="btn-close"
+              data-bs-dismiss="alert"></button>
+
+    </div>
+    
     <div class="mb-3 d-flex justify-content-end">
       <button class="btn btn-success me-2" (click)="handleAdd()">
         <i class="bi bi-plus-circle"></i> Add Employee
@@ -18,7 +28,7 @@
           <th>Email</th>
           <th>Mobile</th>
           <th>DOB</th>
-          <th>Action</th>
+          <!-- <th>Action</th> -->
         </tr>
       </thead>
       <tbody>
@@ -29,7 +39,7 @@
           <td>{{ employee.emp_work_email}}</td>
           <td>{{ employee.emp_mobile}}</td>
           <td>{{ employee.emp_birthday}}</td>
-          <td>
+          <!-- <td>
             <div class="mb-3">
               <button class="btn btn-success me-2">
                 <i class="bi bi-pencil-square"></i>
@@ -39,7 +49,7 @@
                 <i class="bi bi-trash"></i>
               </button>
             </div>
-          </td>
+          </td> -->
         </tr>
       </tbody>
     </table>

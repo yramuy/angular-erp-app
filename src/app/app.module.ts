@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './components/layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEmployeeComponent } from './components/employees/add-employee/add-employee.component';
+import { DynamicFormFieldsComponent } from './components/configurations/dynamic-form-fields/dynamic-form-fields.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AddEmployeeComponent } from './components/employees/add-employee/add-em
     EmployeesComponent,
     LoginComponent,
     LayoutComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    DynamicFormFieldsComponent
   ],
   imports: [
     BrowserModule,

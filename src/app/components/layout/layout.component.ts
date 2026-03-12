@@ -11,6 +11,19 @@ export class LayoutComponent {
   isCollapsed = false;
   isLoggedIn = false;
   user: any;
+  isConfigOpen = false;
+  isMyInfoOpen = false;
+  isMenu: boolean = false;
+  isChildMenu: boolean = false;
+
+  menus: any = {
+    myInfo: false,
+    config: false,
+    attendance: false,
+    daily: false,
+    monthly: false,
+  };
+
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -24,8 +37,31 @@ export class LayoutComponent {
     });
   }
 
+  toggleMenu(menu: string) {
+    this.menus[menu] = !this.menus[menu];
+  }
+
+  toggleChildMenu() {
+    this.isChildMenu = !this.isChildMenu;
+  }
+
+
+  toggleConfigMenu() {
+    this.isConfigOpen = !this.isConfigOpen;
+  }
+
+  toggleMyInfoMenu() {
+    this.isMyInfoOpen = !this.isMyInfoOpen;
+  }
+
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
+
+
+    if (this.isCollapsed) {
+      this.isMyInfoOpen = false;
+      this.isConfigOpen = false;
+    }
   }
 
   logout() {
