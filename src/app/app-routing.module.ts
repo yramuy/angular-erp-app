@@ -11,6 +11,7 @@ import { authGuard } from './guards/auth.guard';
 import { loginGuard } from './guards/login.guard';
 import { AddEmployeeComponent } from './components/employees/add-employee/add-employee.component';
 import { DynamicFormFieldsComponent } from './components/configurations/dynamic-form-fields/dynamic-form-fields.component';
+import { AddFieldComponent } from './components/configurations/add-field/add-field.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -36,6 +37,7 @@ const routes: Routes = [
         path: 'dynamic-form-fields',
         children: [
           { path: '', component: DynamicFormFieldsComponent},
+          { path: 'add', component: AddFieldComponent}
         ]
       },
 

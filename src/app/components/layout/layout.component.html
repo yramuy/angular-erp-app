@@ -60,19 +60,19 @@
     <li class="nav-item">
 
       <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
-        (click)="toggleMenu('myInfo')">
+        (click)="menuService.toggleMenu('myInfo')">
 
         <span class="d-flex align-items-center">
           <i class="bi bi-person-circle me-2"></i>
           <span class="link-text">My Info</span>
         </span>
 
-        <i class="bi" [ngClass]="menus.myInfo ? 'bi-chevron-down' : 'bi-chevron-right'">
+        <i class="bi" [ngClass]="menuService.menus.myInfo ? 'bi-chevron-down' : 'bi-chevron-right'">
         </i>
 
       </a>
 
-      <ul *ngIf="menus.myInfo" class="list-unstyled ps-4">
+      <ul *ngIf="menuService.menus.myInfo" class="list-unstyled ps-4">
 
         <li>
           <a class="nav-link" routerLink="/personal-details" routerLinkActive="active">
@@ -106,19 +106,19 @@
     <li class="nav-item">
 
       <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
-        (click)="toggleMenu('config')">
+        (click)="menuService.toggleMenu('config')">
 
         <span class="d-flex align-items-center">
           <i class="bi bi-sliders me-2"></i>
           <span class="link-text">Configuration</span>
         </span>
 
-        <i class="bi" [ngClass]="menus.config ? 'bi-chevron-down' : 'bi-chevron-right'">
+        <i class="bi" [ngClass]="menuService.menus.config ? 'bi-chevron-down' : 'bi-chevron-right'">
         </i>
 
       </a>
 
-      <ul *ngIf="menus.config" class="list-unstyled ps-4">
+      <ul *ngIf="menuService.menus.config" class="list-unstyled ps-4">
 
         <li>
           <a class="nav-link" routerLink="/dynamic-form-fields" routerLinkActive="active">
@@ -152,36 +152,36 @@
     <li class="nav-item">
 
       <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
-        (click)="toggleMenu('attendance')">
+        (click)="menuService.toggleMenu('attendance')">
 
         <span class="d-flex align-items-center">
           <i class="bi bi-calendar-day me-2"></i>
           <span class="link-text">Attendance Reports</span>
         </span>
 
-        <i class="bi" [ngClass]="menus.attendance ? 'bi-chevron-down' : 'bi-chevron-right'">
+        <i class="bi" [ngClass]="menuService.menus.attendance ? 'bi-chevron-down' : 'bi-chevron-right'">
         </i>
 
       </a>
 
-      <ul *ngIf="menus.attendance" class="list-unstyled ps-4">
+      <ul *ngIf="menuService.menus.attendance" class="list-unstyled ps-4">
 
         <!-- DAILY -->
         <li>
 
           <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
-            (click)="toggleMenu('daily')">
+            (click)="menuService.toggleMenu('daily')">
 
             <span>
               <i class="bi bi-calendar-day me-2"></i> Daily
             </span>
 
-            <i class="bi" [ngClass]="menus.daily ? 'bi-chevron-down' : 'bi-chevron-right'">
+            <i class="bi" [ngClass]="menuService.menus.daily ? 'bi-chevron-down' : 'bi-chevron-right'">
             </i>
 
           </a>
 
-          <ul *ngIf="menus.daily" class="list-unstyled ps-4">
+          <ul *ngIf="menuService.menus.daily" class="list-unstyled ps-4">
 
             <li>
               <a class="nav-link" routerLinkActive="active">
@@ -210,18 +210,18 @@
         <li>
 
           <a class="nav-link cursor-pointer d-flex justify-content-between align-items-center"
-            (click)="toggleMenu('monthly')">
+            (click)="menuService.toggleMenu('monthly')">
 
             <span>
               <i class="bi bi-calendar-day me-2"></i> Monthly
             </span>
 
-            <i class="bi" [ngClass]="menus.monthly ? 'bi-chevron-down' : 'bi-chevron-right'">
+            <i class="bi" [ngClass]="menuService.menus.monthly ? 'bi-chevron-down' : 'bi-chevron-right'">
             </i>
 
           </a>
 
-          <ul *ngIf="menus.monthly" class="list-unstyled ps-4">
+          <ul *ngIf="menuService.menus.monthly" class="list-unstyled ps-4">
 
             <li>
               <a class="nav-link" routerLinkActive="active">

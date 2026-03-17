@@ -2,13 +2,13 @@
   <div class="card-header">
     <h5>Add Employee</h5>
   </div>
-
-  <div class="card-body">
-    <div *ngIf="isMessage === true" class="alert alert-danger alert-dismissible fade show" role="alert">
+  <form #empForm="ngForm" (ngSubmit)="saveEmployee(empForm)">
+    <div class="card-body">
+      <div *ngIf="isMessage === true" class="alert alert-danger alert-dismissible fade show" role="alert">
         {{message}}
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    </div>
-    <form #empForm="ngForm" (ngSubmit)="saveEmployee(empForm)">
+      </div>
+
 
       <div class="row mb-3">
 
@@ -21,24 +21,21 @@
               <span *ngIf="field.is_mandatory == '1'" class="text-danger">*</span>
             </label>
 
-            <input *ngIf="field.control_id == '1'"
-                   type="text"
-                   class="form-control"
-                   [(ngModel)]="formData[field.field_name]"
-                   [name]="field.field_name"
-                   [required]="field.is_mandatory == '1'"
-                   [readonly]="field.is_enable == '0'"
-                   [style.background]="field.is_enable == '0' ? 'lightgrey' : ''" />
+            <input *ngIf="field.control_id == '1'" 
+            type="text" class="form-control"
+              [(ngModel)]="formData[field.field_name]" 
+              [name]="field.field_name" 
+              [required]="field.is_mandatory == '1'"
+              [readonly]="field.is_enable == '0'" 
+              [style.background]="field.is_enable == '0' ? 'lightgrey' : ''" />
 
-                    <!-- Error -->
-                <div class="text-danger mt-1"
-                    *ngIf="empForm.controls[field.field_name]?.invalid 
-                    && empForm.controls[field.field_name]?.touched"
-                    >
-                    <small *ngIf="empForm.controls[field.field_name]?.errors?.['required']">
-                        {{ field.label_name }} is required
-                    </small>
-                </div>
+            <!-- Error -->
+            <div class="text-danger mt-1" *ngIf="empForm.controls[field.field_name]?.invalid 
+                    && empForm.controls[field.field_name]?.touched">
+              <small *ngIf="empForm.controls[field.field_name]?.errors?.['required']">
+                {{ field.label_name }} is required
+              </small>
+            </div>
 
           </div>
 
@@ -46,11 +43,11 @@
 
       </div>
 
-      <div class="d-flex gap-3 mb-3">
-        <button class="btn btn-success">Save</button>
-        <button class="btn btn-dark" (click)="handleBackBtn()">Back</button>
-      </div>
 
-    </form>
-  </div>
+    </div>
+    <div class="card-footer d-flex gap-3 mb-0">
+      <button class="btn btn-success">Save</button>
+      <button class="btn btn-dark" (click)="handleBackBtn()">Back</button>
+    </div>
+  </form>
 </div>
